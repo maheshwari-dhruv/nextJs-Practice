@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/Utils.module.css";
 import Link from "next/link";
 import { getSortedPostsData } from "../lib/posts";
+import Date from '../components/date';
 
 import React from "react";
 
@@ -32,13 +33,13 @@ export default function Home({ allPostsData }) {
           <h2 className={utilStyles.headingLg}>Blog</h2>
           <ul className={utilStyles.list}>
             {allPostsData.map(({ id, date, title }) => (
-              <li className={utilStyles.listItem} key={id}>
-                {title}
-                <br />
-                {id}
-                <br />
-                {date}
-              </li>
+                <li className={utilStyles.listItem} key={id}>
+                  <Link href={`/posts/${id}`}>{title}</Link>
+                  <br />
+                  <small className={utilStyles.lightText}>
+                    <Date dateString={date} />
+                  </small>
+                </li>
             ))}
           </ul>
         </section>
